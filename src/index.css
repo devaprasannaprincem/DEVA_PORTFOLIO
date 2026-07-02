@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Golden Amber palette — inspired by the profile photo */
+  --color-brand-teal: #D4860A;      /* primary amber (replaces teal) */
+  --color-brand-cyan: #F5B731;      /* bright gold (replaces cyan) */
+  --color-brand-dark: #0a0f1d;
+  --color-brand-darker: #05070f;
+  --color-brand-card: #111827;
+
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-brand-darker);
+    color: #f3f4f6;
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-brand-darker);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1f2937;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+  }
+}
+
+/* ─── Utility Classes ─────────────────────────────────────── */
+
+.glass {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-teal {
+  background: rgba(212, 134, 10, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 134, 10, 0.15);
+}
+
+.glow-teal {
+  box-shadow: 0 0 30px rgba(212, 134, 10, 0.15);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #F5B731 0%, #D4860A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────── */
+
+@keyframes gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes blob-drift {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(20px, -20px) scale(1.05); }
+  66%  { transform: translate(-15px, 12px) scale(0.97); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob-drift 12s ease-in-out infinite;
+}
+.animate-blob-delay-2 {
+  animation: blob-drift 14s ease-in-out 2s infinite;
+}
+.animate-blob-delay-4 {
+  animation: blob-drift 16s ease-in-out 4s infinite;
+}
+
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, transparent 25%, rgba(245, 183, 49, 0.3) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes timeline-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 134, 10, 0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(212, 134, 10, 0); }
+}
+
+.animate-timeline-pulse {
+  animation: timeline-pulse 2s ease-in-out infinite;
+}
+
+.skill-tag {
+  transition: all 0.2s ease;
+}
+.skill-tag:hover {
+  border-color: rgba(212, 134, 10, 0.4);
+  color: #e2e8f0;
+  box-shadow: 0 0 10px rgba(212, 134, 10, 0.1);
+  transform: translateY(-2px);
+}
+
+@keyframes btn-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(212, 134, 10, 0.3); }
+  50%       { box-shadow: 0 0 25px rgba(212, 134, 10, 0.6), 0 0 50px rgba(212, 134, 10, 0.2); }
+}
+
+.btn-glow-pulse {
+  animation: btn-glow 3s ease-in-out infinite;
+}
+
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #F5B731;
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
