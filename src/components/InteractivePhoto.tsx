@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import profilePhoto from "../DEVA.jpg";
+import profilePhoto from "../DEVA.png";
 
 export default function InteractivePhoto() {
   return (
